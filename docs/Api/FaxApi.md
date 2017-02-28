@@ -25,7 +25,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 $api_instance = new Swagger\Client\Api\FaxApi();
 $api_key = "api_key_example"; // string | API Key
 $fax_number = "fax_number_example"; // string | Fax Number
-$document_id = 3.4; // float | id of the file / document_id
+$document_id = 1; // integer | id of the file / document_id
 
 try {
     $api_instance->faxDocumentIdCostsGet($api_key, $fax_number, $document_id);
