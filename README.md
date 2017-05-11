@@ -17,14 +17,8 @@ To install the bindings via [Composer](http://getcomposer.org/), add the followi
 
 ```
 {
-  "repositories": [
-    {
-      "type": "git",
-      "url": "https://github.com/faxto/faxto-php.git"
-    }
-  ],
   "require": {
-    "/": "*@dev"
+    "faxto/faxto-php": "dev-master"
   }
 }
 ```
