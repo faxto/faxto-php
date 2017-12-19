@@ -25,7 +25,7 @@ require_once(__DIR__ . '/vendor/autoload.php');
 $api_instance = new Swagger\Client\Api\FaxApi();
 $api_key = "api_key_example"; // string | API Key
 $fax_number = "fax_number_example"; // string | Fax Number
-$document_id = 1; // integer | id of the file / document_id
+$document_id = 3.4; // float | id of the file / document_id
 
 try {
     $api_instance->faxDocumentIdCostsGet($api_key, $fax_number, $document_id);
@@ -153,11 +153,11 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **faxPost**
-> faxPost($api_key, $fax_number, $document_id, $file, $delete_file)
+> faxPost($api_key, $fax_number, $document_id, $tsi_number, $file, $delete_file)
 
 
 
-This API send the fax. When we send fax using API, Fax.to send a POST to the Callback URL you specified in https://fax.to/member/api/live. Fax.to send data POST data with the following information fax_job_id, status and message.
+This API send the fax. When we send fax using API, Fax.to send a POST to the Callback URL you specified in https://fax.to/member/api/live. Fax.to send POST data with the following information fax_job_id, status and message.
 
 ### Example
 ```php
@@ -168,11 +168,12 @@ $api_instance = new Swagger\Client\Api\FaxApi();
 $api_key = "api_key_example"; // string | API Key
 $fax_number = "fax_number_example"; // string | Fax Number
 $document_id = 56; // int | Document id. If you want to use existing document you need to specify the document_id
+$tsi_number = "tsi_number_example"; // string | If we want to to change the text or number that appear on 'from' or 'sender' of the fax
 $file = "/path/to/file.txt"; // \SplFileObject | PDF file to upload
 $delete_file = 56; // int | Whether to delete file after fax transaction. (put 1 to delete)
 
 try {
-    $api_instance->faxPost($api_key, $fax_number, $document_id, $file, $delete_file);
+    $api_instance->faxPost($api_key, $fax_number, $document_id, $tsi_number, $file, $delete_file);
 } catch (Exception $e) {
     echo 'Exception when calling FaxApi->faxPost: ', $e->getMessage(), PHP_EOL;
 }
@@ -186,6 +187,7 @@ Name | Type | Description  | Notes
  **api_key** | **string**| API Key |
  **fax_number** | **string**| Fax Number |
  **document_id** | **int**| Document id. If you want to use existing document you need to specify the document_id | [optional]
+ **tsi_number** | **string**| If we want to to change the text or number that appear on &#39;from&#39; or &#39;sender&#39; of the fax | [optional]
  **file** | **\SplFileObject**| PDF file to upload | [optional]
  **delete_file** | **int**| Whether to delete file after fax transaction. (put 1 to delete) | [optional]
 

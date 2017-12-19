@@ -90,8 +90,6 @@ class FaxApi
     /**
      * Operation faxDocumentIdCostsGet
      *
-     * 
-     *
      * @param string $api_key API Key (required)
      * @param string $fax_number Fax Number (required)
      * @param float $document_id id of the file / document_id (required)
@@ -106,8 +104,6 @@ class FaxApi
 
     /**
      * Operation faxDocumentIdCostsGetWithHttpInfo
-     *
-     * 
      *
      * @param string $api_key API Key (required)
      * @param string $fax_number Fax Number (required)
@@ -157,10 +153,7 @@ class FaxApi
                 $resourcePath
             );
         }
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
 
-        
         // for model (json/xml)
         if (isset($_tempBody)) {
             $httpBody = $_tempBody; // $_tempBody is the method argument, if present
@@ -179,7 +172,7 @@ class FaxApi
                 '/fax/{document_id}/costs'
             );
 
-            return [$response, $statusCode, $httpHeader];
+            return [null, $statusCode, $httpHeader];
         } catch (ApiException $e) {
             switch ($e->getCode()) {
             }
@@ -190,8 +183,6 @@ class FaxApi
 
     /**
      * Operation faxHistoryGet
-     *
-     * 
      *
      * @param string $api_key API Key (required)
      * @param string $limit Number of records to return (optional)
@@ -207,8 +198,6 @@ class FaxApi
 
     /**
      * Operation faxHistoryGetWithHttpInfo
-     *
-     * 
      *
      * @param string $api_key API Key (required)
      * @param string $limit Number of records to return (optional)
@@ -246,10 +235,7 @@ class FaxApi
         if ($page !== null) {
             $queryParams['page'] = $this->apiClient->getSerializer()->toQueryValue($page);
         }
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
 
-        
         // for model (json/xml)
         if (isset($_tempBody)) {
             $httpBody = $_tempBody; // $_tempBody is the method argument, if present
@@ -268,7 +254,7 @@ class FaxApi
                 '/fax-history'
             );
 
-            return [$response, $statusCode, $httpHeader];
+            return [null, $statusCode, $httpHeader];
         } catch (ApiException $e) {
             switch ($e->getCode()) {
             }
@@ -279,8 +265,6 @@ class FaxApi
 
     /**
      * Operation faxJobIdStatusGet
-     *
-     * 
      *
      * @param string $api_key API Key (required)
      * @param float $job_id id of the fax job (required)
@@ -295,8 +279,6 @@ class FaxApi
 
     /**
      * Operation faxJobIdStatusGetWithHttpInfo
-     *
-     * 
      *
      * @param string $api_key API Key (required)
      * @param float $job_id id of the fax job (required)
@@ -337,10 +319,7 @@ class FaxApi
                 $resourcePath
             );
         }
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
 
-        
         // for model (json/xml)
         if (isset($_tempBody)) {
             $httpBody = $_tempBody; // $_tempBody is the method argument, if present
@@ -359,7 +338,7 @@ class FaxApi
                 '/fax/{job_id}/status'
             );
 
-            return [$response, $statusCode, $httpHeader];
+            return [null, $statusCode, $httpHeader];
         } catch (ApiException $e) {
             switch ($e->getCode()) {
             }
@@ -371,36 +350,34 @@ class FaxApi
     /**
      * Operation faxPost
      *
-     * 
-     *
      * @param string $api_key API Key (required)
      * @param string $fax_number Fax Number (required)
      * @param int $document_id Document id. If you want to use existing document you need to specify the document_id (optional)
+     * @param string $tsi_number If we want to to change the text or number that appear on &#39;from&#39; or &#39;sender&#39; of the fax (optional)
      * @param \SplFileObject $file PDF file to upload (optional)
      * @param int $delete_file Whether to delete file after fax transaction. (put 1 to delete) (optional)
      * @throws \Swagger\Client\ApiException on non-2xx response
      * @return void
      */
-    public function faxPost($api_key, $fax_number, $document_id = null, $file = null, $delete_file = null)
+    public function faxPost($api_key, $fax_number, $document_id = null, $tsi_number = null, $file = null, $delete_file = null)
     {
-        list($response) = $this->faxPostWithHttpInfo($api_key, $fax_number, $document_id, $file, $delete_file);
+        list($response) = $this->faxPostWithHttpInfo($api_key, $fax_number, $document_id, $tsi_number, $file, $delete_file);
         return $response;
     }
 
     /**
      * Operation faxPostWithHttpInfo
      *
-     * 
-     *
      * @param string $api_key API Key (required)
      * @param string $fax_number Fax Number (required)
      * @param int $document_id Document id. If you want to use existing document you need to specify the document_id (optional)
+     * @param string $tsi_number If we want to to change the text or number that appear on &#39;from&#39; or &#39;sender&#39; of the fax (optional)
      * @param \SplFileObject $file PDF file to upload (optional)
      * @param int $delete_file Whether to delete file after fax transaction. (put 1 to delete) (optional)
      * @throws \Swagger\Client\ApiException on non-2xx response
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function faxPostWithHttpInfo($api_key, $fax_number, $document_id = null, $file = null, $delete_file = null)
+    public function faxPostWithHttpInfo($api_key, $fax_number, $document_id = null, $tsi_number = null, $file = null, $delete_file = null)
     {
         // verify the required parameter 'api_key' is set
         if ($api_key === null) {
@@ -426,9 +403,6 @@ class FaxApi
         if ($api_key !== null) {
             $queryParams['api_key'] = $this->apiClient->getSerializer()->toQueryValue($api_key);
         }
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
         // form params
         if ($fax_number !== null) {
             $formParams['fax_number'] = $this->apiClient->getSerializer()->toFormValue($fax_number);
@@ -436,6 +410,10 @@ class FaxApi
         // form params
         if ($document_id !== null) {
             $formParams['document_id'] = $this->apiClient->getSerializer()->toFormValue($document_id);
+        }
+        // form params
+        if ($tsi_number !== null) {
+            $formParams['tsi_number'] = $this->apiClient->getSerializer()->toFormValue($tsi_number);
         }
         // form params
         if ($file !== null) {
@@ -451,7 +429,7 @@ class FaxApi
         if ($delete_file !== null) {
             $formParams['delete_file'] = $this->apiClient->getSerializer()->toFormValue($delete_file);
         }
-        
+
         // for model (json/xml)
         if (isset($_tempBody)) {
             $httpBody = $_tempBody; // $_tempBody is the method argument, if present
@@ -470,7 +448,7 @@ class FaxApi
                 '/fax'
             );
 
-            return [$response, $statusCode, $httpHeader];
+            return [null, $statusCode, $httpHeader];
         } catch (ApiException $e) {
             switch ($e->getCode()) {
             }

@@ -90,8 +90,6 @@ class AccountApi
     /**
      * Operation balanceGet
      *
-     * 
-     *
      * @param string $api_key API Key (required)
      * @throws \Swagger\Client\ApiException on non-2xx response
      * @return void
@@ -104,8 +102,6 @@ class AccountApi
 
     /**
      * Operation balanceGetWithHttpInfo
-     *
-     * 
      *
      * @param string $api_key API Key (required)
      * @throws \Swagger\Client\ApiException on non-2xx response
@@ -133,10 +129,7 @@ class AccountApi
         if ($api_key !== null) {
             $queryParams['api_key'] = $this->apiClient->getSerializer()->toQueryValue($api_key);
         }
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
 
-        
         // for model (json/xml)
         if (isset($_tempBody)) {
             $httpBody = $_tempBody; // $_tempBody is the method argument, if present
@@ -155,7 +148,7 @@ class AccountApi
                 '/balance'
             );
 
-            return [$response, $statusCode, $httpHeader];
+            return [null, $statusCode, $httpHeader];
         } catch (ApiException $e) {
             switch ($e->getCode()) {
             }

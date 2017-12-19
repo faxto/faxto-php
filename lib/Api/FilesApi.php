@@ -90,8 +90,6 @@ class FilesApi
     /**
      * Operation filesGet
      *
-     * 
-     *
      * @param string $api_key API Key (required)
      * @throws \Swagger\Client\ApiException on non-2xx response
      * @return void
@@ -104,8 +102,6 @@ class FilesApi
 
     /**
      * Operation filesGetWithHttpInfo
-     *
-     * 
      *
      * @param string $api_key API Key (required)
      * @throws \Swagger\Client\ApiException on non-2xx response
@@ -133,10 +129,7 @@ class FilesApi
         if ($api_key !== null) {
             $queryParams['api_key'] = $this->apiClient->getSerializer()->toQueryValue($api_key);
         }
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
 
-        
         // for model (json/xml)
         if (isset($_tempBody)) {
             $httpBody = $_tempBody; // $_tempBody is the method argument, if present
@@ -155,7 +148,7 @@ class FilesApi
                 '/files'
             );
 
-            return [$response, $statusCode, $httpHeader];
+            return [null, $statusCode, $httpHeader];
         } catch (ApiException $e) {
             switch ($e->getCode()) {
             }
@@ -166,8 +159,6 @@ class FilesApi
 
     /**
      * Operation filesIdDelete
-     *
-     * 
      *
      * @param string $api_key API Key (required)
      * @param float $id id of the file / document (required)
@@ -182,8 +173,6 @@ class FilesApi
 
     /**
      * Operation filesIdDeleteWithHttpInfo
-     *
-     * 
      *
      * @param string $api_key API Key (required)
      * @param float $id id of the file / document (required)
@@ -224,10 +213,7 @@ class FilesApi
                 $resourcePath
             );
         }
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
 
-        
         // for model (json/xml)
         if (isset($_tempBody)) {
             $httpBody = $_tempBody; // $_tempBody is the method argument, if present
@@ -246,7 +232,7 @@ class FilesApi
                 '/files/{id}'
             );
 
-            return [$response, $statusCode, $httpHeader];
+            return [null, $statusCode, $httpHeader];
         } catch (ApiException $e) {
             switch ($e->getCode()) {
             }
@@ -257,8 +243,6 @@ class FilesApi
 
     /**
      * Operation filesPost
-     *
-     * 
      *
      * @param string $api_key API Key (required)
      * @param \SplFileObject $file PDF file to upload (required)
@@ -273,8 +257,6 @@ class FilesApi
 
     /**
      * Operation filesPostWithHttpInfo
-     *
-     * 
      *
      * @param string $api_key API Key (required)
      * @param \SplFileObject $file PDF file to upload (required)
@@ -307,9 +289,6 @@ class FilesApi
         if ($api_key !== null) {
             $queryParams['api_key'] = $this->apiClient->getSerializer()->toQueryValue($api_key);
         }
-        // default format to json
-        $resourcePath = str_replace("{format}", "json", $resourcePath);
-
         // form params
         if ($file !== null) {
             // PHP 5.5 introduced a CurlFile object that deprecates the old @filename syntax
@@ -320,7 +299,7 @@ class FilesApi
                 $formParams['file'] = '@' . $this->apiClient->getSerializer()->toFormValue($file);
             }
         }
-        
+
         // for model (json/xml)
         if (isset($_tempBody)) {
             $httpBody = $_tempBody; // $_tempBody is the method argument, if present
