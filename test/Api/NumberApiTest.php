@@ -1,6 +1,6 @@
 <?php
 /**
- * FilesApiTest
+ * NumberApiTest
  * PHP version 5
  *
  * @category Class
@@ -34,14 +34,14 @@ use \Swagger\Client\ApiException;
 use \Swagger\Client\ObjectSerializer;
 
 /**
- * FilesApiTest Class Doc Comment
+ * NumberApiTest Class Doc Comment
  *
  * @category Class
  * @package  Swagger\Client
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class FilesApiTest extends \PHPUnit_Framework_TestCase
+class NumberApiTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -73,52 +73,12 @@ class FilesApiTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test case for fileCleanGet
+     * Test case for numbersGet
      *
      * .
      *
      */
-    public function testFileCleanGet()
-    {
-    }
-
-    /**
-     * Test case for fileGeneratePreviewGet
-     *
-     * .
-     *
-     */
-    public function testFileGeneratePreviewGet()
-    {
-    }
-
-    /**
-     * Test case for filesGet
-     *
-     * .
-     *
-     */
-    public function testFilesGet()
-    {
-    }
-
-    /**
-     * Test case for filesIdDelete
-     *
-     * .
-     *
-     */
-    public function testFilesIdDelete()
-    {
-    }
-
-    /**
-     * Test case for filesPost
-     *
-     * .
-     *
-     */
-    public function testFilesPost()
+    public function testNumbersGet()
     {
     }
 }

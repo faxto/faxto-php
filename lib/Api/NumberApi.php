@@ -1,6 +1,6 @@
 <?php
 /**
- * AccountApi
+ * NumberApi
  * PHP version 5
  *
  * @category Class
@@ -34,14 +34,14 @@ use \Swagger\Client\Configuration;
 use \Swagger\Client\ObjectSerializer;
 
 /**
- * AccountApi Class Doc Comment
+ * NumberApi Class Doc Comment
  *
  * @category Class
  * @package  Swagger\Client
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class AccountApi
+class NumberApi
 {
     /**
      * API Client
@@ -79,7 +79,7 @@ class AccountApi
      *
      * @param \Swagger\Client\ApiClient $apiClient set the API client
      *
-     * @return AccountApi
+     * @return NumberApi
      */
     public function setApiClient(\Swagger\Client\ApiClient $apiClient)
     {
@@ -88,33 +88,35 @@ class AccountApi
     }
 
     /**
-     * Operation balanceGet
+     * Operation numbersGet
      *
      * @param string $api_key API Key (required)
+     * @param string $page Page to display (optional)
      * @throws \Swagger\Client\ApiException on non-2xx response
      * @return void
      */
-    public function balanceGet($api_key)
+    public function numbersGet($api_key, $page = null)
     {
-        list($response) = $this->balanceGetWithHttpInfo($api_key);
+        list($response) = $this->numbersGetWithHttpInfo($api_key, $page);
         return $response;
     }
 
     /**
-     * Operation balanceGetWithHttpInfo
+     * Operation numbersGetWithHttpInfo
      *
      * @param string $api_key API Key (required)
+     * @param string $page Page to display (optional)
      * @throws \Swagger\Client\ApiException on non-2xx response
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function balanceGetWithHttpInfo($api_key)
+    public function numbersGetWithHttpInfo($api_key, $page = null)
     {
         // verify the required parameter 'api_key' is set
         if ($api_key === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $api_key when calling balanceGet');
+            throw new \InvalidArgumentException('Missing the required parameter $api_key when calling numbersGet');
         }
         // parse inputs
-        $resourcePath = "/balance";
+        $resourcePath = "/numbers";
         $httpBody = '';
         $queryParams = [];
         $headerParams = [];
@@ -128,6 +130,10 @@ class AccountApi
         // query params
         if ($api_key !== null) {
             $queryParams['api_key'] = $this->apiClient->getSerializer()->toQueryValue($api_key);
+        }
+        // query params
+        if ($page !== null) {
+            $queryParams['page'] = $this->apiClient->getSerializer()->toQueryValue($page);
         }
 
         // for model (json/xml)
@@ -145,7 +151,7 @@ class AccountApi
                 $httpBody,
                 $headerParams,
                 null,
-                '/balance'
+                '/numbers'
             );
 
             return [null, $statusCode, $httpHeader];

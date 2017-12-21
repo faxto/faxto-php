@@ -39,7 +39,7 @@ namespace Swagger\Client;
  */
 class Configuration
 {
-    private static $defaultConfiguration = null;
+    private static $defaultConfiguration;
 
     /**
      * Associate array to store API key(s)
@@ -88,7 +88,7 @@ class Configuration
      *
      * @var string
      */
-    protected $host = 'https://fax.to/api/v1';
+    protected $host = 'https://fax.to/api/v2';
 
     /**
      * Timeout (second) of the HTTP request, by default set to 0, no timeout
@@ -109,7 +109,7 @@ class Configuration
      *
      * @var string
      */
-    protected $userAgent = "Swagger-Codegen/1.0.0/php";
+    protected $userAgent = 'Swagger-Codegen/1.0.0/php';
 
     /**
      * Debug switch (default set to false)
@@ -142,6 +142,49 @@ class Configuration
     protected $sslVerification = true;
 
     /**
+     * Curl proxy host
+     *
+     * @var string
+     */
+    protected $proxyHost;
+
+    /**
+     * Curl proxy port
+     *
+     * @var integer
+     */
+    protected $proxyPort;
+
+    /**
+     * Curl proxy type, e.g. CURLPROXY_HTTP or CURLPROXY_SOCKS5
+     *
+     * @see https://secure.php.net/manual/en/function.curl-setopt.php
+     * @var integer
+     */
+    protected $proxyType;
+
+    /**
+     * Curl proxy username
+     *
+     * @var string
+     */
+    protected $proxyUser;
+
+    /**
+     * Curl proxy password
+     *
+     * @var string
+     */
+    protected $proxyPassword;
+
+    /**
+     * Allow Curl encoding header
+     *
+     * @var bool
+     */
+    protected $allowEncoding = false;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -155,7 +198,7 @@ class Configuration
      * @param string $apiKeyIdentifier API key identifier (authentication scheme)
      * @param string $key              API key or token
      *
-     * @return Configuration
+     * @return $this
      */
     public function setApiKey($apiKeyIdentifier, $key)
     {
@@ -181,7 +224,7 @@ class Configuration
      * @param string $apiKeyIdentifier API key identifier (authentication scheme)
      * @param string $prefix           API key prefix, e.g. Bearer
      *
-     * @return Configuration
+     * @return $this
      */
     public function setApiKeyPrefix($apiKeyIdentifier, $prefix)
     {
@@ -206,7 +249,7 @@ class Configuration
      *
      * @param string $accessToken Token for OAuth
      *
-     * @return Configuration
+     * @return $this
      */
     public function setAccessToken($accessToken)
     {
@@ -229,7 +272,7 @@ class Configuration
      *
      * @param string $username Username for HTTP basic authentication
      *
-     * @return Configuration
+     * @return $this
      */
     public function setUsername($username)
     {
@@ -252,7 +295,7 @@ class Configuration
      *
      * @param string $password Password for HTTP basic authentication
      *
-     * @return Configuration
+     * @return $this
      */
     public function setPassword($password)
     {
@@ -276,7 +319,8 @@ class Configuration
      * @param string $headerName  header name (e.g. Token)
      * @param string $headerValue header value (e.g. 1z8wp3)
      *
-     * @return Configuration
+     * @throws \InvalidArgumentException
+     * @return $this
      */
     public function addDefaultHeader($headerName, $headerValue)
     {
@@ -303,11 +347,12 @@ class Configuration
      *
      * @param string $headerName the header to delete
      *
-     * @return Configuration
+     * @return $this
      */
     public function deleteDefaultHeader($headerName)
     {
         unset($this->defaultHeaders[$headerName]);
+        return $this;
     }
 
     /**
@@ -315,7 +360,7 @@ class Configuration
      *
      * @param string $host Host
      *
-     * @return Configuration
+     * @return $this
      */
     public function setHost($host)
     {
@@ -338,7 +383,8 @@ class Configuration
      *
      * @param string $userAgent the user agent of the api client
      *
-     * @return Configuration
+     * @throws \InvalidArgumentException
+     * @return $this
      */
     public function setUserAgent($userAgent)
     {
@@ -365,7 +411,8 @@ class Configuration
      *
      * @param integer $seconds Number of seconds before timing out [set to 0 for no timeout]
      *
-     * @return Configuration
+     * @throws \InvalidArgumentException
+     * @return $this
      */
     public function setCurlTimeout($seconds)
     {
@@ -392,7 +439,8 @@ class Configuration
      *
      * @param integer $seconds Number of seconds before connection times out [set to 0 for no timeout]
      *
-     * @return Configuration
+     * @throws \InvalidArgumentException
+     * @return $this
      */
     public function setCurlConnectTimeout($seconds)
     {
@@ -401,6 +449,18 @@ class Configuration
         }
 
         $this->curlConnectTimeout = $seconds;
+        return $this;
+    }
+
+    /**
+     * Set whether to accept encoding
+     * @param bool $allowEncoding
+     *
+     * @return $this
+     */
+    public function setAllowEncoding($allowEncoding)
+    {
+        $this->allowEncoding = $allowEncoding;
         return $this;
     }
 
@@ -415,11 +475,136 @@ class Configuration
     }
 
     /**
+     * Get whether to allow encoding
+     *
+     * @return bool
+     */
+    public function getAllowEncoding()
+    {
+        return $this->allowEncoding;
+    }
+
+    /**
+     * Sets the HTTP Proxy Host
+     *
+     * @param string $proxyHost HTTP Proxy URL
+     *
+     * @return $this
+     */
+    public function setCurlProxyHost($proxyHost)
+    {
+        $this->proxyHost = $proxyHost;
+        return $this;
+    }
+
+    /**
+     * Gets the HTTP Proxy Host
+     *
+     * @return string
+     */
+    public function getCurlProxyHost()
+    {
+        return $this->proxyHost;
+    }
+
+    /**
+     * Sets the HTTP Proxy Port
+     *
+     * @param integer $proxyPort HTTP Proxy Port
+     *
+     * @return $this
+     */
+    public function setCurlProxyPort($proxyPort)
+    {
+        $this->proxyPort = $proxyPort;
+        return $this;
+    }
+
+    /**
+     * Gets the HTTP Proxy Port
+     *
+     * @return integer
+     */
+    public function getCurlProxyPort()
+    {
+        return $this->proxyPort;
+    }
+
+    /**
+     * Sets the HTTP Proxy Type
+     *
+     * @param integer $proxyType HTTP Proxy Type
+     *
+     * @return $this
+     */
+    public function setCurlProxyType($proxyType)
+    {
+        $this->proxyType = $proxyType;
+        return $this;
+    }
+
+    /**
+     * Gets the HTTP Proxy Type
+     *
+     * @return integer
+     */
+    public function getCurlProxyType()
+    {
+        return $this->proxyType;
+    }
+
+    /**
+     * Sets the HTTP Proxy User
+     *
+     * @param string $proxyUser HTTP Proxy User
+     *
+     * @return $this
+     */
+    public function setCurlProxyUser($proxyUser)
+    {
+        $this->proxyUser = $proxyUser;
+        return $this;
+    }
+
+    /**
+     * Gets the HTTP Proxy User
+     *
+     * @return string
+     */
+    public function getCurlProxyUser()
+    {
+        return $this->proxyUser;
+    }
+
+    /**
+     * Sets the HTTP Proxy Password
+     *
+     * @param string $proxyPassword HTTP Proxy Password
+     *
+     * @return $this
+     */
+    public function setCurlProxyPassword($proxyPassword)
+    {
+        $this->proxyPassword = $proxyPassword;
+        return $this;
+    }
+
+    /**
+     * Gets the HTTP Proxy Password
+     *
+     * @return string
+     */
+    public function getCurlProxyPassword()
+    {
+        return $this->proxyPassword;
+    }
+
+    /**
      * Sets debug flag
      *
      * @param bool $debug Debug flag
      *
-     * @return Configuration
+     * @return $this
      */
     public function setDebug($debug)
     {
@@ -442,7 +627,7 @@ class Configuration
      *
      * @param string $debugFile Debug file
      *
-     * @return Configuration
+     * @return $this
      */
     public function setDebugFile($debugFile)
     {
@@ -465,7 +650,7 @@ class Configuration
      *
      * @param string $tempFolderPath Temp folder path
      *
-     * @return Configuration
+     * @return $this
      */
     public function setTempFolderPath($tempFolderPath)
     {
@@ -488,7 +673,7 @@ class Configuration
      *
      * @param boolean $sslVerification True if the certificate should be validated, false otherwise
      *
-     * @return Configuration
+     * @return $this
      */
     public function setSSLVerification($sslVerification)
     {
@@ -541,7 +726,7 @@ class Configuration
     {
         $report  = 'PHP SDK (Swagger\Client) Debug Report:' . PHP_EOL;
         $report .= '    OS: ' . php_uname() . PHP_EOL;
-        $report .= '    PHP Version: ' . phpversion() . PHP_EOL;
+        $report .= '    PHP Version: ' . PHP_VERSION . PHP_EOL;
         $report .= '    OpenAPI Spec Version: 0.0.1' . PHP_EOL;
         $report .= '    Temp Folder Path: ' . self::getDefaultConfiguration()->getTempFolderPath() . PHP_EOL;
 

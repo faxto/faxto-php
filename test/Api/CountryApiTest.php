@@ -1,6 +1,6 @@
 <?php
 /**
- * FilesApiTest
+ * CountryApiTest
  * PHP version 5
  *
  * @category Class
@@ -34,14 +34,14 @@ use \Swagger\Client\ApiException;
 use \Swagger\Client\ObjectSerializer;
 
 /**
- * FilesApiTest Class Doc Comment
+ * CountryApiTest Class Doc Comment
  *
  * @category Class
  * @package  Swagger\Client
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class FilesApiTest extends \PHPUnit_Framework_TestCase
+class CountryApiTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -73,52 +73,52 @@ class FilesApiTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test case for fileCleanGet
+     * Test case for areacodesCountryCodeStateIdGet
      *
      * .
      *
      */
-    public function testFileCleanGet()
+    public function testAreacodesCountryCodeStateIdGet()
     {
     }
 
     /**
-     * Test case for fileGeneratePreviewGet
+     * Test case for countriesCountryCodeDidgroupsGet
      *
      * .
      *
      */
-    public function testFileGeneratePreviewGet()
+    public function testCountriesCountryCodeDidgroupsGet()
     {
     }
 
     /**
-     * Test case for filesGet
+     * Test case for countriesDidgroupsDidGroupIdProvisionPost
      *
      * .
      *
      */
-    public function testFilesGet()
+    public function testCountriesDidgroupsDidGroupIdProvisionPost()
     {
     }
 
     /**
-     * Test case for filesIdDelete
+     * Test case for countriesGet
      *
      * .
      *
      */
-    public function testFilesIdDelete()
+    public function testCountriesGet()
     {
     }
 
     /**
-     * Test case for filesPost
+     * Test case for statesCountryCodeGet
      *
      * .
      *
      */
-    public function testFilesPost()
+    public function testStatesCountryCodeGet()
     {
     }
 }

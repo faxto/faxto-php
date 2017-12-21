@@ -1,6 +1,6 @@
 <?php
 /**
- * FaxApi
+ * CountryApi
  * PHP version 5
  *
  * @category Class
@@ -34,14 +34,14 @@ use \Swagger\Client\Configuration;
 use \Swagger\Client\ObjectSerializer;
 
 /**
- * FaxApi Class Doc Comment
+ * CountryApi Class Doc Comment
  *
  * @category Class
  * @package  Swagger\Client
  * @author   Swagger Codegen team
  * @link     https://github.com/swagger-api/swagger-codegen
  */
-class FaxApi
+class CountryApi
 {
     /**
      * API Client
@@ -79,7 +79,7 @@ class FaxApi
      *
      * @param \Swagger\Client\ApiClient $apiClient set the API client
      *
-     * @return FaxApi
+     * @return CountryApi
      */
     public function setApiClient(\Swagger\Client\ApiClient $apiClient)
     {
@@ -88,45 +88,39 @@ class FaxApi
     }
 
     /**
-     * Operation faxDocumentIdCostsGet
+     * Operation areacodesCountryCodeStateIdGet
      *
-     * @param string $api_key API Key (required)
-     * @param string $fax_number Fax Number (required)
-     * @param float $document_id id of the file / document_id (required)
+     * @param string $country_code countryCode in the Country (required)
+     * @param string $state_id stateId in the Country (required)
      * @throws \Swagger\Client\ApiException on non-2xx response
      * @return void
      */
-    public function faxDocumentIdCostsGet($api_key, $fax_number, $document_id)
+    public function areacodesCountryCodeStateIdGet($country_code, $state_id)
     {
-        list($response) = $this->faxDocumentIdCostsGetWithHttpInfo($api_key, $fax_number, $document_id);
+        list($response) = $this->areacodesCountryCodeStateIdGetWithHttpInfo($country_code, $state_id);
         return $response;
     }
 
     /**
-     * Operation faxDocumentIdCostsGetWithHttpInfo
+     * Operation areacodesCountryCodeStateIdGetWithHttpInfo
      *
-     * @param string $api_key API Key (required)
-     * @param string $fax_number Fax Number (required)
-     * @param float $document_id id of the file / document_id (required)
+     * @param string $country_code countryCode in the Country (required)
+     * @param string $state_id stateId in the Country (required)
      * @throws \Swagger\Client\ApiException on non-2xx response
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function faxDocumentIdCostsGetWithHttpInfo($api_key, $fax_number, $document_id)
+    public function areacodesCountryCodeStateIdGetWithHttpInfo($country_code, $state_id)
     {
-        // verify the required parameter 'api_key' is set
-        if ($api_key === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $api_key when calling faxDocumentIdCostsGet');
+        // verify the required parameter 'country_code' is set
+        if ($country_code === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $country_code when calling areacodesCountryCodeStateIdGet');
         }
-        // verify the required parameter 'fax_number' is set
-        if ($fax_number === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $fax_number when calling faxDocumentIdCostsGet');
-        }
-        // verify the required parameter 'document_id' is set
-        if ($document_id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $document_id when calling faxDocumentIdCostsGet');
+        // verify the required parameter 'state_id' is set
+        if ($state_id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $state_id when calling areacodesCountryCodeStateIdGet');
         }
         // parse inputs
-        $resourcePath = "/fax/{document_id}/costs";
+        $resourcePath = "/areacodes/{countryCode}/{stateId}";
         $httpBody = '';
         $queryParams = [];
         $headerParams = [];
@@ -137,19 +131,19 @@ class FaxApi
         }
         $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType([]);
 
-        // query params
-        if ($api_key !== null) {
-            $queryParams['api_key'] = $this->apiClient->getSerializer()->toQueryValue($api_key);
-        }
-        // query params
-        if ($fax_number !== null) {
-            $queryParams['fax_number'] = $this->apiClient->getSerializer()->toQueryValue($fax_number);
+        // path params
+        if ($country_code !== null) {
+            $resourcePath = str_replace(
+                "{" . "countryCode" . "}",
+                $this->apiClient->getSerializer()->toPathValue($country_code),
+                $resourcePath
+            );
         }
         // path params
-        if ($document_id !== null) {
+        if ($state_id !== null) {
             $resourcePath = str_replace(
-                "{" . "document_id" . "}",
-                $this->apiClient->getSerializer()->toPathValue($document_id),
+                "{" . "stateId" . "}",
+                $this->apiClient->getSerializer()->toPathValue($state_id),
                 $resourcePath
             );
         }
@@ -169,7 +163,7 @@ class FaxApi
                 $httpBody,
                 $headerParams,
                 null,
-                '/fax/{document_id}/costs'
+                '/areacodes/{countryCode}/{stateId}'
             );
 
             return [null, $statusCode, $httpHeader];
@@ -182,37 +176,51 @@ class FaxApi
     }
 
     /**
-     * Operation faxGet
+     * Operation countriesCountryCodeDidgroupsGet
      *
-     * @param string $api_key API Key (required)
-     * @param string $limit Number of records to return (optional)
-     * @param string $page Page to display (optional)
+     * @param string $country_code countryCode in the Country (required)
+     * @param string $did_group_ids didGroupId in the Country (required)
+     * @param string $state_id stateId in the Country (required)
+     * @param string $city_name_pattern cityNamePattern in the Country (required)
      * @throws \Swagger\Client\ApiException on non-2xx response
      * @return void
      */
-    public function faxGet($api_key, $limit = null, $page = null)
+    public function countriesCountryCodeDidgroupsGet($country_code, $did_group_ids, $state_id, $city_name_pattern)
     {
-        list($response) = $this->faxGetWithHttpInfo($api_key, $limit, $page);
+        list($response) = $this->countriesCountryCodeDidgroupsGetWithHttpInfo($country_code, $did_group_ids, $state_id, $city_name_pattern);
         return $response;
     }
 
     /**
-     * Operation faxGetWithHttpInfo
+     * Operation countriesCountryCodeDidgroupsGetWithHttpInfo
      *
-     * @param string $api_key API Key (required)
-     * @param string $limit Number of records to return (optional)
-     * @param string $page Page to display (optional)
+     * @param string $country_code countryCode in the Country (required)
+     * @param string $did_group_ids didGroupId in the Country (required)
+     * @param string $state_id stateId in the Country (required)
+     * @param string $city_name_pattern cityNamePattern in the Country (required)
      * @throws \Swagger\Client\ApiException on non-2xx response
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function faxGetWithHttpInfo($api_key, $limit = null, $page = null)
+    public function countriesCountryCodeDidgroupsGetWithHttpInfo($country_code, $did_group_ids, $state_id, $city_name_pattern)
     {
-        // verify the required parameter 'api_key' is set
-        if ($api_key === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $api_key when calling faxGet');
+        // verify the required parameter 'country_code' is set
+        if ($country_code === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $country_code when calling countriesCountryCodeDidgroupsGet');
+        }
+        // verify the required parameter 'did_group_ids' is set
+        if ($did_group_ids === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $did_group_ids when calling countriesCountryCodeDidgroupsGet');
+        }
+        // verify the required parameter 'state_id' is set
+        if ($state_id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $state_id when calling countriesCountryCodeDidgroupsGet');
+        }
+        // verify the required parameter 'city_name_pattern' is set
+        if ($city_name_pattern === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $city_name_pattern when calling countriesCountryCodeDidgroupsGet');
         }
         // parse inputs
-        $resourcePath = "/fax";
+        $resourcePath = "/countries/{countryCode}/didgroups";
         $httpBody = '';
         $queryParams = [];
         $headerParams = [];
@@ -224,98 +232,22 @@ class FaxApi
         $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType([]);
 
         // query params
-        if ($api_key !== null) {
-            $queryParams['api_key'] = $this->apiClient->getSerializer()->toQueryValue($api_key);
+        if ($did_group_ids !== null) {
+            $queryParams['didGroupIds'] = $this->apiClient->getSerializer()->toQueryValue($did_group_ids);
         }
         // query params
-        if ($limit !== null) {
-            $queryParams['limit'] = $this->apiClient->getSerializer()->toQueryValue($limit);
+        if ($state_id !== null) {
+            $queryParams['stateId'] = $this->apiClient->getSerializer()->toQueryValue($state_id);
         }
         // query params
-        if ($page !== null) {
-            $queryParams['page'] = $this->apiClient->getSerializer()->toQueryValue($page);
-        }
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath,
-                'GET',
-                $queryParams,
-                $httpBody,
-                $headerParams,
-                null,
-                '/fax'
-            );
-
-            return [null, $statusCode, $httpHeader];
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-            }
-
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation faxJobIdStatusGet
-     *
-     * @param string $api_key API Key (required)
-     * @param float $job_id id of the fax job (required)
-     * @throws \Swagger\Client\ApiException on non-2xx response
-     * @return void
-     */
-    public function faxJobIdStatusGet($api_key, $job_id)
-    {
-        list($response) = $this->faxJobIdStatusGetWithHttpInfo($api_key, $job_id);
-        return $response;
-    }
-
-    /**
-     * Operation faxJobIdStatusGetWithHttpInfo
-     *
-     * @param string $api_key API Key (required)
-     * @param float $job_id id of the fax job (required)
-     * @throws \Swagger\Client\ApiException on non-2xx response
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function faxJobIdStatusGetWithHttpInfo($api_key, $job_id)
-    {
-        // verify the required parameter 'api_key' is set
-        if ($api_key === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $api_key when calling faxJobIdStatusGet');
-        }
-        // verify the required parameter 'job_id' is set
-        if ($job_id === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $job_id when calling faxJobIdStatusGet');
-        }
-        // parse inputs
-        $resourcePath = "/fax/{job_id}/status";
-        $httpBody = '';
-        $queryParams = [];
-        $headerParams = [];
-        $formParams = [];
-        $_header_accept = $this->apiClient->selectHeaderAccept([]);
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType([]);
-
-        // query params
-        if ($api_key !== null) {
-            $queryParams['api_key'] = $this->apiClient->getSerializer()->toQueryValue($api_key);
+        if ($city_name_pattern !== null) {
+            $queryParams['cityNamePattern'] = $this->apiClient->getSerializer()->toQueryValue($city_name_pattern);
         }
         // path params
-        if ($job_id !== null) {
+        if ($country_code !== null) {
             $resourcePath = str_replace(
-                "{" . "job_id" . "}",
-                $this->apiClient->getSerializer()->toPathValue($job_id),
+                "{" . "countryCode" . "}",
+                $this->apiClient->getSerializer()->toPathValue($country_code),
                 $resourcePath
             );
         }
@@ -335,7 +267,7 @@ class FaxApi
                 $httpBody,
                 $headerParams,
                 null,
-                '/fax/{job_id}/status'
+                '/countries/{countryCode}/didgroups'
             );
 
             return [null, $statusCode, $httpHeader];
@@ -348,33 +280,33 @@ class FaxApi
     }
 
     /**
-     * Operation incomingFaxesGet
+     * Operation countriesDidgroupsDidGroupIdProvisionPost
      *
-     * @param string $api_key API Key (required)
+     * @param string $did_group_id didGroupId in the Country (required)
      * @throws \Swagger\Client\ApiException on non-2xx response
      * @return void
      */
-    public function incomingFaxesGet($api_key)
+    public function countriesDidgroupsDidGroupIdProvisionPost($did_group_id)
     {
-        list($response) = $this->incomingFaxesGetWithHttpInfo($api_key);
+        list($response) = $this->countriesDidgroupsDidGroupIdProvisionPostWithHttpInfo($did_group_id);
         return $response;
     }
 
     /**
-     * Operation incomingFaxesGetWithHttpInfo
+     * Operation countriesDidgroupsDidGroupIdProvisionPostWithHttpInfo
      *
-     * @param string $api_key API Key (required)
+     * @param string $did_group_id didGroupId in the Country (required)
      * @throws \Swagger\Client\ApiException on non-2xx response
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function incomingFaxesGetWithHttpInfo($api_key)
+    public function countriesDidgroupsDidGroupIdProvisionPostWithHttpInfo($did_group_id)
     {
-        // verify the required parameter 'api_key' is set
-        if ($api_key === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $api_key when calling incomingFaxesGet');
+        // verify the required parameter 'did_group_id' is set
+        if ($did_group_id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $did_group_id when calling countriesDidgroupsDidGroupIdProvisionPost');
         }
         // parse inputs
-        $resourcePath = "/incoming-faxes";
+        $resourcePath = "/countries/didgroups/{didGroupId}/provision";
         $httpBody = '';
         $queryParams = [];
         $headerParams = [];
@@ -385,10 +317,74 @@ class FaxApi
         }
         $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType([]);
 
-        // query params
-        if ($api_key !== null) {
-            $queryParams['api_key'] = $this->apiClient->getSerializer()->toQueryValue($api_key);
+        // path params
+        if ($did_group_id !== null) {
+            $resourcePath = str_replace(
+                "{" . "didGroupId" . "}",
+                $this->apiClient->getSerializer()->toPathValue($did_group_id),
+                $resourcePath
+            );
         }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath,
+                'POST',
+                $queryParams,
+                $httpBody,
+                $headerParams,
+                null,
+                '/countries/didgroups/{didGroupId}/provision'
+            );
+
+            return [null, $statusCode, $httpHeader];
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            }
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation countriesGet
+     *
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     * @return void
+     */
+    public function countriesGet()
+    {
+        list($response) = $this->countriesGetWithHttpInfo();
+        return $response;
+    }
+
+    /**
+     * Operation countriesGetWithHttpInfo
+     *
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function countriesGetWithHttpInfo()
+    {
+        // parse inputs
+        $resourcePath = "/countries";
+        $httpBody = '';
+        $queryParams = [];
+        $headerParams = [];
+        $formParams = [];
+        $_header_accept = $this->apiClient->selectHeaderAccept([]);
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType([]);
+
 
         // for model (json/xml)
         if (isset($_tempBody)) {
@@ -405,7 +401,7 @@ class FaxApi
                 $httpBody,
                 $headerParams,
                 null,
-                '/incoming-faxes'
+                '/countries'
             );
 
             return [null, $statusCode, $httpHeader];
@@ -418,39 +414,33 @@ class FaxApi
     }
 
     /**
-     * Operation incomingFaxesNumberGet
+     * Operation statesCountryCodeGet
      *
-     * @param string $api_key API Key (required)
-     * @param string $number Number in the fax (required)
+     * @param string $country_code countryCode in the Country (required)
      * @throws \Swagger\Client\ApiException on non-2xx response
      * @return void
      */
-    public function incomingFaxesNumberGet($api_key, $number)
+    public function statesCountryCodeGet($country_code)
     {
-        list($response) = $this->incomingFaxesNumberGetWithHttpInfo($api_key, $number);
+        list($response) = $this->statesCountryCodeGetWithHttpInfo($country_code);
         return $response;
     }
 
     /**
-     * Operation incomingFaxesNumberGetWithHttpInfo
+     * Operation statesCountryCodeGetWithHttpInfo
      *
-     * @param string $api_key API Key (required)
-     * @param string $number Number in the fax (required)
+     * @param string $country_code countryCode in the Country (required)
      * @throws \Swagger\Client\ApiException on non-2xx response
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function incomingFaxesNumberGetWithHttpInfo($api_key, $number)
+    public function statesCountryCodeGetWithHttpInfo($country_code)
     {
-        // verify the required parameter 'api_key' is set
-        if ($api_key === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $api_key when calling incomingFaxesNumberGet');
-        }
-        // verify the required parameter 'number' is set
-        if ($number === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $number when calling incomingFaxesNumberGet');
+        // verify the required parameter 'country_code' is set
+        if ($country_code === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $country_code when calling statesCountryCodeGet');
         }
         // parse inputs
-        $resourcePath = "/incoming-faxes/{number}";
+        $resourcePath = "/states/{countryCode}";
         $httpBody = '';
         $queryParams = [];
         $headerParams = [];
@@ -461,15 +451,11 @@ class FaxApi
         }
         $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType([]);
 
-        // query params
-        if ($api_key !== null) {
-            $queryParams['api_key'] = $this->apiClient->getSerializer()->toQueryValue($api_key);
-        }
         // path params
-        if ($number !== null) {
+        if ($country_code !== null) {
             $resourcePath = str_replace(
-                "{" . "number" . "}",
-                $this->apiClient->getSerializer()->toPathValue($number),
+                "{" . "countryCode" . "}",
+                $this->apiClient->getSerializer()->toPathValue($country_code),
                 $resourcePath
             );
         }
@@ -489,83 +475,7 @@ class FaxApi
                 $httpBody,
                 $headerParams,
                 null,
-                '/incoming-faxes/{number}'
-            );
-
-            return [null, $statusCode, $httpHeader];
-        } catch (ApiException $e) {
-            switch ($e->getCode()) {
-            }
-
-            throw $e;
-        }
-    }
-
-    /**
-     * Operation provisionNumbersGet
-     *
-     * @param string $api_key API Key (required)
-     * @param string $limit Limit to display (optional)
-     * @throws \Swagger\Client\ApiException on non-2xx response
-     * @return void
-     */
-    public function provisionNumbersGet($api_key, $limit = null)
-    {
-        list($response) = $this->provisionNumbersGetWithHttpInfo($api_key, $limit);
-        return $response;
-    }
-
-    /**
-     * Operation provisionNumbersGetWithHttpInfo
-     *
-     * @param string $api_key API Key (required)
-     * @param string $limit Limit to display (optional)
-     * @throws \Swagger\Client\ApiException on non-2xx response
-     * @return array of null, HTTP status code, HTTP response headers (array of strings)
-     */
-    public function provisionNumbersGetWithHttpInfo($api_key, $limit = null)
-    {
-        // verify the required parameter 'api_key' is set
-        if ($api_key === null) {
-            throw new \InvalidArgumentException('Missing the required parameter $api_key when calling provisionNumbersGet');
-        }
-        // parse inputs
-        $resourcePath = "/provision-numbers";
-        $httpBody = '';
-        $queryParams = [];
-        $headerParams = [];
-        $formParams = [];
-        $_header_accept = $this->apiClient->selectHeaderAccept([]);
-        if (!is_null($_header_accept)) {
-            $headerParams['Accept'] = $_header_accept;
-        }
-        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType([]);
-
-        // query params
-        if ($api_key !== null) {
-            $queryParams['api_key'] = $this->apiClient->getSerializer()->toQueryValue($api_key);
-        }
-        // query params
-        if ($limit !== null) {
-            $queryParams['limit'] = $this->apiClient->getSerializer()->toQueryValue($limit);
-        }
-
-        // for model (json/xml)
-        if (isset($_tempBody)) {
-            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
-        } elseif (count($formParams) > 0) {
-            $httpBody = $formParams; // for HTTP post (form)
-        }
-        // make the API Call
-        try {
-            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
-                $resourcePath,
-                'GET',
-                $queryParams,
-                $httpBody,
-                $headerParams,
-                null,
-                '/provision-numbers'
+                '/states/{countryCode}'
             );
 
             return [null, $statusCode, $httpHeader];

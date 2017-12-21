@@ -1,31 +1,32 @@
-# Swagger\Client\AccountApi
+# Swagger\Client\NumberApi
 
 All URIs are relative to *https://fax.to/api/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**balanceGet**](AccountApi.md#balanceGet) | **GET** /balance | 
+[**numbersGet**](NumberApi.md#numbersGet) | **GET** /numbers | 
 
 
-# **balanceGet**
-> balanceGet($api_key)
+# **numbersGet**
+> numbersGet($api_key, $page)
 
 
 
-This API get users balance.
+This API get users numbers.
 
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\AccountApi();
+$api_instance = new Swagger\Client\Api\NumberApi();
 $api_key = "api_key_example"; // string | API Key
+$page = "page_example"; // string | Page to display
 
 try {
-    $api_instance->balanceGet($api_key);
+    $api_instance->numbersGet($api_key, $page);
 } catch (Exception $e) {
-    echo 'Exception when calling AccountApi->balanceGet: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling NumberApi->numbersGet: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -35,6 +36,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **api_key** | **string**| API Key |
+ **page** | **string**| Page to display | [optional]
 
 ### Return type
 
