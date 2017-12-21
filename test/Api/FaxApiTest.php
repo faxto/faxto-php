@@ -83,12 +83,12 @@ class FaxApiTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test case for faxHistoryGet
+     * Test case for faxGet
      *
      * .
      *
      */
-    public function testFaxHistoryGet()
+    public function testFaxGet()
     {
     }
 
@@ -103,12 +103,32 @@ class FaxApiTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test case for faxPost
+     * Test case for incomingFaxesGet
      *
      * .
      *
      */
-    public function testFaxPost()
+    public function testIncomingFaxesGet()
+    {
+    }
+
+    /**
+     * Test case for incomingFaxesNumberGet
+     *
+     * .
+     *
+     */
+    public function testIncomingFaxesNumberGet()
+    {
+    }
+
+    /**
+     * Test case for provisionNumbersGet
+     *
+     * .
+     *
+     */
+    public function testProvisionNumbersGet()
     {
     }
 }

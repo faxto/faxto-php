@@ -70,18 +70,28 @@ try {
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://fax.to/api/v1*
+All URIs are relative to *https://fax.to/api/v2*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *AccountApi* | [**balanceGet**](docs/Api/AccountApi.md#balanceget) | **GET** /balance | 
+*CountryApi* | [**areacodesCountryCodeStateIdGet**](docs/Api/CountryApi.md#areacodescountrycodestateidget) | **GET** /areacodes/{countryCode}/{stateId} | 
+*CountryApi* | [**countriesCountryCodeDidgroupsGet**](docs/Api/CountryApi.md#countriescountrycodedidgroupsget) | **GET** /countries/{countryCode}/didgroups | 
+*CountryApi* | [**countriesDidgroupsDidGroupIdProvisionPost**](docs/Api/CountryApi.md#countriesdidgroupsdidgroupidprovisionpost) | **POST** /countries/didgroups/{didGroupId}/provision | 
+*CountryApi* | [**countriesGet**](docs/Api/CountryApi.md#countriesget) | **GET** /countries | 
+*CountryApi* | [**statesCountryCodeGet**](docs/Api/CountryApi.md#statescountrycodeget) | **GET** /states/{countryCode} | 
 *FaxApi* | [**faxDocumentIdCostsGet**](docs/Api/FaxApi.md#faxdocumentidcostsget) | **GET** /fax/{document_id}/costs | 
-*FaxApi* | [**faxHistoryGet**](docs/Api/FaxApi.md#faxhistoryget) | **GET** /fax-history | 
+*FaxApi* | [**faxGet**](docs/Api/FaxApi.md#faxget) | **GET** /fax | 
 *FaxApi* | [**faxJobIdStatusGet**](docs/Api/FaxApi.md#faxjobidstatusget) | **GET** /fax/{job_id}/status | 
-*FaxApi* | [**faxPost**](docs/Api/FaxApi.md#faxpost) | **POST** /fax | 
+*FaxApi* | [**incomingFaxesGet**](docs/Api/FaxApi.md#incomingfaxesget) | **GET** /incoming-faxes | 
+*FaxApi* | [**incomingFaxesNumberGet**](docs/Api/FaxApi.md#incomingfaxesnumberget) | **GET** /incoming-faxes/{number} | 
+*FaxApi* | [**provisionNumbersGet**](docs/Api/FaxApi.md#provisionnumbersget) | **GET** /provision-numbers | 
+*FilesApi* | [**fileCleanGet**](docs/Api/FilesApi.md#filecleanget) | **GET** /file-clean | 
+*FilesApi* | [**fileGeneratePreviewGet**](docs/Api/FilesApi.md#filegeneratepreviewget) | **GET** /file-generate-preview | 
 *FilesApi* | [**filesGet**](docs/Api/FilesApi.md#filesget) | **GET** /files | 
 *FilesApi* | [**filesIdDelete**](docs/Api/FilesApi.md#filesiddelete) | **DELETE** /files/{id} | 
 *FilesApi* | [**filesPost**](docs/Api/FilesApi.md#filespost) | **POST** /files | 
+*NumberApi* | [**numbersGet**](docs/Api/NumberApi.md#numbersget) | **GET** /numbers | 
 
 
 ## Documentation For Models

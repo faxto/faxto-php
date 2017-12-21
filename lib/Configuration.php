@@ -88,7 +88,7 @@ class Configuration
      *
      * @var string
      */
-    protected $host = 'https://fax.to/api/v1';
+    protected $host = 'https://fax.to/api/v2';
 
     /**
      * Timeout (second) of the HTTP request, by default set to 0, no timeout

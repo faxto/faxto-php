@@ -1,13 +1,107 @@
 # Swagger\Client\FilesApi
 
-All URIs are relative to *https://fax.to/api/v1*
+All URIs are relative to *https://fax.to/api/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**fileCleanGet**](FilesApi.md#fileCleanGet) | **GET** /file-clean | 
+[**fileGeneratePreviewGet**](FilesApi.md#fileGeneratePreviewGet) | **GET** /file-generate-preview | 
 [**filesGet**](FilesApi.md#filesGet) | **GET** /files | 
 [**filesIdDelete**](FilesApi.md#filesIdDelete) | **DELETE** /files/{id} | 
 [**filesPost**](FilesApi.md#filesPost) | **POST** /files | 
 
+
+# **fileCleanGet**
+> fileCleanGet($api_key, $document_id)
+
+
+
+This API get clean file from document id.
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\Api\FilesApi();
+$api_key = "api_key_example"; // string | API Key
+$document_id = "document_id_example"; // string | Document ID in the fax
+
+try {
+    $api_instance->fileCleanGet($api_key, $document_id);
+} catch (Exception $e) {
+    echo 'Exception when calling FilesApi->fileCleanGet: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **api_key** | **string**| API Key |
+ **document_id** | **string**| Document ID in the fax |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **fileGeneratePreviewGet**
+> fileGeneratePreviewGet($api_key, $document_id)
+
+
+
+This API get generated preview file from document id.
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\Api\FilesApi();
+$api_key = "api_key_example"; // string | API Key
+$document_id = "document_id_example"; // string | Document ID in the fax
+
+try {
+    $api_instance->fileGeneratePreviewGet($api_key, $document_id);
+} catch (Exception $e) {
+    echo 'Exception when calling FilesApi->fileGeneratePreviewGet: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **api_key** | **string**| API Key |
+ **document_id** | **string**| Document ID in the fax |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **filesGet**
 > filesGet($api_key)
@@ -100,7 +194,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **filesPost**
-> \Swagger\Client\Model\File filesPost($api_key, $file)
+> \Swagger\Client\Model\File filesPost($api_key, $file, $add_remote_file)
 
 
 
@@ -114,9 +208,10 @@ require_once(__DIR__ . '/vendor/autoload.php');
 $api_instance = new Swagger\Client\Api\FilesApi();
 $api_key = "api_key_example"; // string | API Key
 $file = "/path/to/file.txt"; // \SplFileObject | PDF file to upload
+$add_remote_file = "add_remote_file_example"; // string | Given the remote file url
 
 try {
-    $result = $api_instance->filesPost($api_key, $file);
+    $result = $api_instance->filesPost($api_key, $file, $add_remote_file);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling FilesApi->filesPost: ', $e->getMessage(), PHP_EOL;
@@ -130,6 +225,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **api_key** | **string**| API Key |
  **file** | **\SplFileObject**| PDF file to upload |
+ **add_remote_file** | **string**| Given the remote file url | [optional]
 
 ### Return type
 

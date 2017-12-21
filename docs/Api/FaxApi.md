@@ -1,13 +1,15 @@
 # Swagger\Client\FaxApi
 
-All URIs are relative to *https://fax.to/api/v1*
+All URIs are relative to *https://fax.to/api/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**faxDocumentIdCostsGet**](FaxApi.md#faxDocumentIdCostsGet) | **GET** /fax/{document_id}/costs | 
-[**faxHistoryGet**](FaxApi.md#faxHistoryGet) | **GET** /fax-history | 
+[**faxGet**](FaxApi.md#faxGet) | **GET** /fax | 
 [**faxJobIdStatusGet**](FaxApi.md#faxJobIdStatusGet) | **GET** /fax/{job_id}/status | 
-[**faxPost**](FaxApi.md#faxPost) | **POST** /fax | 
+[**incomingFaxesGet**](FaxApi.md#incomingFaxesGet) | **GET** /incoming-faxes | 
+[**incomingFaxesNumberGet**](FaxApi.md#incomingFaxesNumberGet) | **GET** /incoming-faxes/{number} | 
+[**provisionNumbersGet**](FaxApi.md#provisionNumbersGet) | **GET** /provision-numbers | 
 
 
 # **faxDocumentIdCostsGet**
@@ -58,8 +60,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-# **faxHistoryGet**
-> faxHistoryGet($api_key, $limit, $page)
+# **faxGet**
+> faxGet($api_key, $limit, $page)
 
 
 
@@ -76,9 +78,9 @@ $limit = "limit_example"; // string | Number of records to return
 $page = "page_example"; // string | Page to display
 
 try {
-    $api_instance->faxHistoryGet($api_key, $limit, $page);
+    $api_instance->faxGet($api_key, $limit, $page);
 } catch (Exception $e) {
-    echo 'Exception when calling FaxApi->faxHistoryGet: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling FaxApi->faxGet: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -152,12 +154,12 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
-# **faxPost**
-> faxPost($api_key, $fax_number, $document_id, $tsi_number, $file, $delete_file)
+# **incomingFaxesGet**
+> incomingFaxesGet($api_key)
 
 
 
-This API send the fax. When we send fax using API, Fax.to send a POST to the Callback URL you specified in https://fax.to/member/api/live. Fax.to send POST data with the following information fax_job_id, status and message.
+This API get faxes .
 
 ### Example
 ```php
@@ -166,16 +168,11 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 $api_instance = new Swagger\Client\Api\FaxApi();
 $api_key = "api_key_example"; // string | API Key
-$fax_number = "fax_number_example"; // string | Fax Number
-$document_id = 56; // int | Document id. If you want to use existing document you need to specify the document_id
-$tsi_number = "tsi_number_example"; // string | If we want to to change the text or number that appear on 'from' or 'sender' of the fax
-$file = "/path/to/file.txt"; // \SplFileObject | PDF file to upload
-$delete_file = 56; // int | Whether to delete file after fax transaction. (put 1 to delete)
 
 try {
-    $api_instance->faxPost($api_key, $fax_number, $document_id, $tsi_number, $file, $delete_file);
+    $api_instance->incomingFaxesGet($api_key);
 } catch (Exception $e) {
-    echo 'Exception when calling FaxApi->faxPost: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling FaxApi->incomingFaxesGet: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -185,11 +182,6 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **api_key** | **string**| API Key |
- **fax_number** | **string**| Fax Number |
- **document_id** | **int**| Document id. If you want to use existing document you need to specify the document_id | [optional]
- **tsi_number** | **string**| If we want to to change the text or number that appear on &#39;from&#39; or &#39;sender&#39; of the fax | [optional]
- **file** | **\SplFileObject**| PDF file to upload | [optional]
- **delete_file** | **int**| Whether to delete file after fax transaction. (put 1 to delete) | [optional]
 
 ### Return type
 
@@ -201,7 +193,99 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: multipart/form-data
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **incomingFaxesNumberGet**
+> incomingFaxesNumberGet($api_key, $number)
+
+
+
+This API get faxes  by number.
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\Api\FaxApi();
+$api_key = "api_key_example"; // string | API Key
+$number = "number_example"; // string | Number in the fax
+
+try {
+    $api_instance->incomingFaxesNumberGet($api_key, $number);
+} catch (Exception $e) {
+    echo 'Exception when calling FaxApi->incomingFaxesNumberGet: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **api_key** | **string**| API Key |
+ **number** | **string**| Number in the fax |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+
+# **provisionNumbersGet**
+> provisionNumbersGet($api_key, $limit)
+
+
+
+This API get Provision numbers.
+
+### Example
+```php
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\Api\FaxApi();
+$api_key = "api_key_example"; // string | API Key
+$limit = "limit_example"; // string | Limit to display
+
+try {
+    $api_instance->provisionNumbersGet($api_key, $limit);
+} catch (Exception $e) {
+    echo 'Exception when calling FaxApi->provisionNumbersGet: ', $e->getMessage(), PHP_EOL;
+}
+?>
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **api_key** | **string**| API Key |
+ **limit** | **string**| Limit to display | [optional]
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)

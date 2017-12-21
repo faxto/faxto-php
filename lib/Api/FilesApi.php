@@ -88,6 +88,166 @@ class FilesApi
     }
 
     /**
+     * Operation fileCleanGet
+     *
+     * @param string $api_key API Key (required)
+     * @param string $document_id Document ID in the fax (required)
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     * @return void
+     */
+    public function fileCleanGet($api_key, $document_id)
+    {
+        list($response) = $this->fileCleanGetWithHttpInfo($api_key, $document_id);
+        return $response;
+    }
+
+    /**
+     * Operation fileCleanGetWithHttpInfo
+     *
+     * @param string $api_key API Key (required)
+     * @param string $document_id Document ID in the fax (required)
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function fileCleanGetWithHttpInfo($api_key, $document_id)
+    {
+        // verify the required parameter 'api_key' is set
+        if ($api_key === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $api_key when calling fileCleanGet');
+        }
+        // verify the required parameter 'document_id' is set
+        if ($document_id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $document_id when calling fileCleanGet');
+        }
+        // parse inputs
+        $resourcePath = "/file-clean";
+        $httpBody = '';
+        $queryParams = [];
+        $headerParams = [];
+        $formParams = [];
+        $_header_accept = $this->apiClient->selectHeaderAccept([]);
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType([]);
+
+        // query params
+        if ($api_key !== null) {
+            $queryParams['api_key'] = $this->apiClient->getSerializer()->toQueryValue($api_key);
+        }
+        // query params
+        if ($document_id !== null) {
+            $queryParams['document_id'] = $this->apiClient->getSerializer()->toQueryValue($document_id);
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath,
+                'GET',
+                $queryParams,
+                $httpBody,
+                $headerParams,
+                null,
+                '/file-clean'
+            );
+
+            return [null, $statusCode, $httpHeader];
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            }
+
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation fileGeneratePreviewGet
+     *
+     * @param string $api_key API Key (required)
+     * @param string $document_id Document ID in the fax (required)
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     * @return void
+     */
+    public function fileGeneratePreviewGet($api_key, $document_id)
+    {
+        list($response) = $this->fileGeneratePreviewGetWithHttpInfo($api_key, $document_id);
+        return $response;
+    }
+
+    /**
+     * Operation fileGeneratePreviewGetWithHttpInfo
+     *
+     * @param string $api_key API Key (required)
+     * @param string $document_id Document ID in the fax (required)
+     * @throws \Swagger\Client\ApiException on non-2xx response
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     */
+    public function fileGeneratePreviewGetWithHttpInfo($api_key, $document_id)
+    {
+        // verify the required parameter 'api_key' is set
+        if ($api_key === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $api_key when calling fileGeneratePreviewGet');
+        }
+        // verify the required parameter 'document_id' is set
+        if ($document_id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $document_id when calling fileGeneratePreviewGet');
+        }
+        // parse inputs
+        $resourcePath = "/file-generate-preview";
+        $httpBody = '';
+        $queryParams = [];
+        $headerParams = [];
+        $formParams = [];
+        $_header_accept = $this->apiClient->selectHeaderAccept([]);
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = $this->apiClient->selectHeaderContentType([]);
+
+        // query params
+        if ($api_key !== null) {
+            $queryParams['api_key'] = $this->apiClient->getSerializer()->toQueryValue($api_key);
+        }
+        // query params
+        if ($document_id !== null) {
+            $queryParams['document_id'] = $this->apiClient->getSerializer()->toQueryValue($document_id);
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath,
+                'GET',
+                $queryParams,
+                $httpBody,
+                $headerParams,
+                null,
+                '/file-generate-preview'
+            );
+
+            return [null, $statusCode, $httpHeader];
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+            }
+
+            throw $e;
+        }
+    }
+
+    /**
      * Operation filesGet
      *
      * @param string $api_key API Key (required)
@@ -246,12 +406,13 @@ class FilesApi
      *
      * @param string $api_key API Key (required)
      * @param \SplFileObject $file PDF file to upload (required)
+     * @param string $add_remote_file Given the remote file url (optional)
      * @throws \Swagger\Client\ApiException on non-2xx response
      * @return \Swagger\Client\Model\File
      */
-    public function filesPost($api_key, $file)
+    public function filesPost($api_key, $file, $add_remote_file = null)
     {
-        list($response) = $this->filesPostWithHttpInfo($api_key, $file);
+        list($response) = $this->filesPostWithHttpInfo($api_key, $file, $add_remote_file);
         return $response;
     }
 
@@ -260,10 +421,11 @@ class FilesApi
      *
      * @param string $api_key API Key (required)
      * @param \SplFileObject $file PDF file to upload (required)
+     * @param string $add_remote_file Given the remote file url (optional)
      * @throws \Swagger\Client\ApiException on non-2xx response
      * @return array of \Swagger\Client\Model\File, HTTP status code, HTTP response headers (array of strings)
      */
-    public function filesPostWithHttpInfo($api_key, $file)
+    public function filesPostWithHttpInfo($api_key, $file, $add_remote_file = null)
     {
         // verify the required parameter 'api_key' is set
         if ($api_key === null) {
@@ -298,6 +460,10 @@ class FilesApi
             } else {
                 $formParams['file'] = '@' . $this->apiClient->getSerializer()->toFormValue($file);
             }
+        }
+        // form params
+        if ($add_remote_file !== null) {
+            $formParams['AddRemoteFile'] = $this->apiClient->getSerializer()->toFormValue($add_remote_file);
         }
 
         // for model (json/xml)
